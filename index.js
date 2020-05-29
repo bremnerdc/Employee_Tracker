@@ -59,7 +59,7 @@ const {prompt} = require(inquirer);
                 }
             }
 async function viewEmployees() {
-const employees = await db.findAllEmployees();
+const employee = await db.findAllEmployees();
                 console.log("/n");
                 console.table(employees);
                 editTeam()};
@@ -76,101 +76,91 @@ const manager = await db.findAllEmployees();
     name: `${firstname} ${lastname}`,
     value: id
 }));
+
 async function addEmployee() {
 const employee = await db.findAllEmployees();
 const roles = await db.findAllRoles();
 
-                                                      
-                                                      
-                                   
-                
-                
-    function app(){
-        function CreateManager(){
-            inquirer.prompt([
-                {
-                    type: "input",
-                    name: "managerName",
-                    message: "What is your manager's name?"
-                    },
-                    {
-                    type: "input",
-                    name: "managerID",
-                    message: "What is your manager's ID?"
-                    },
-                    {
-                        type: "input",
-                        name: "managerEmail",
-                        message: "What is your manager's email?"
-                        },
-                    {
-                    type: "input",
-                    name: "officeNumber",
-                    message: "What is your manager's office number?"
-                    }
-            ]).then(answers => {
-                const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.officeNumber);
-                teamArray.push(manager);
-                idArray.push(answers.managerID);
-                createTeam();
-            });
-        }
-    function addEngineer() {
-        inquirer.prompt([
+const employeePrompt = await prompt([
+    {type: "input",
+    name: "first_name",
+    message: "What is your first name?"
+    },
+    {
+    type: "input",
+    name: "last_name",
+    message: "What is your last name?"
+    },
+]);
+const roleChoices = roles.map(({ id, title }) => ({
+name: title,
+value: id
+}));
+
+const { roleId } = await prompt({
+    type: "list",
+    name: "roleId",
+    message: "What is your first name?",
+    choices: roleChoices
+});
+employee.role_id = roleId;
+
+const managerChoice = roles.map(({ id, first_name, last_name }) => ({
+    name: `${first_name} ${last_name}`,
+    value: id
+    }));
+    managerChoice.unshift({ name: "none", value: none});
+    const { managerId } = await prompt({
+        type: "list",
+        name: "first_name",
+        message: "What is your first name?",
+        choices: managerChoice
+    });
+employee.manager_id = managerId;
+
+async function updateEmployeeManager() {
+    const employees = await db.findAllEmployees();
+    const employeeChoices = employees.map(({ id, first_name, last_name }) => ({
+      name: `${first_name} ${last_name}`,
+      value: id
+    }));
+    await db.updateEmployeeManager(employeeId, managerId);
+  console.log("Updated employee's manager");
+editTeam();
+}
+
+
+    const { employeeId } = await prompt([
+      {
+        type: "list",
+        name: "employeeId",
+        message: "Which employee's manager do you want to update?",
+        choices: employeeChoices
+      }
+    ]);
+    const managers = await db.findAllPossibleManagers(employeeId);
+    
+
+    async function removeEmployee() {
+        const employees = await db.findAllEmployees();
+        const employeeChoices = employees.map(({ id, first_name, last_name }) => ({
+          name: `${first_name} ${last_name}`,
+          value: id
+        }));
+        const { employeeId } = await prompt([
             {
-                type: "input",
-                name: "engineerName",
-                message: "What is your engineer's name?"
-                },
-                {
-                type: "input",
-                name: "engineerID",
-                message: "What is your engineer's ID?"
-                },
-                {
-                    type: "input",
-                    name: "engineerEmail",
-                    message: "What is your engineer's email?"
-                    },
-                {
-                type: "input",
-                name: "engineerGithub",
-                message: "What is your engineer's github ID?"
-                }
-        ]).then(answers => {
-            const engineer = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerGithub);
-            teamArray.push(engineer);
-            console.log(engineer);
-            idArray.push(answers.engineerID);
-            createTeam();
-        });
+              type: "list",
+              name: "employeeId",
+              message: "Which employee do you want to remove?",
+              choices: employeeChoices
+            }
+          ]);
+    await db.removeEmployee(employee);
+    editTeam();
     }
-        function addIntern() {
-            inquirer.prompt([
-                {
-                    type: "input",
-                    name: "internName",
-                    message: "What is your intern's name?"
-                    },
-                    {
-                    type: "input",
-                    name: "internID",
-                    message: "What is your intern's ID?"
-                    },
-                    {
-                        type: "input",
-                        name: "internEmail",
-                        message: "What is your intern's email?"
-                        },
-                    {
-                    type: "input",
-                    name: "internSchool",
-                    message: "What is your intern's school?"
-                    }
-            ]).then(answers => {
-                const intern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.internSchool);
-                teamArray.push(intern);
-                idArray.push(answers.internID);
-                createTeam();
-            });
-        }
+    async function viewAllRoles() {
+        const roles = await db.findAllRoles();
+                        console.log("/n");
+                        console.table(roles);
+                        editTeam();
+    });

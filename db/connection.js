@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
   user: "root",
 
   // Your password
-  password: "process.env.MYSQL_PASSWORD",
+  password: process.env.MYSQL_PASSWORD,
   database: "employees_db"
 });
 
