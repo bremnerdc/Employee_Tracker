@@ -1,15 +1,30 @@
-INSERT INTO employees (first_name,last_name,role_id,manager_id) VALUE ("Kaitlyn", "Rhor", 3, 5);
-INSERT INTO employees (first_name,last_name,role_id,manager_id) VALUE ("Nick", "Goudeau", 3, 5);
-INSERT INTO employees (first_name,last_name,role_id,manager_id) VALUE ("Alex", "Lukens", 3, 5);
-INSERT INTO employees (first_name,last_name,role_id,manager_id) VALUE ("Tony", "Bussert", 1, null);
-INSERT INTO employees (first_name,last_name,role_id,manager_id) VALUE ("Jesse", "Jay", 2, 4);
-INSERT INTO employees (first_name,last_name,role_id,manager_id) VALUE ("Evelyn", "Kay", 2, 4);
-INSERT INTO employees (first_name,last_name,role_id,manager_id) VALUE ("Brenda", "Bee", 4, 6);
-INSERT INTO employees (first_name,last_name,role_id,manager_id) VALUE ("Micheal", "Mmmh", 4, 6);
-
-INSERT INTO role (title,salary,department_id) VALUE ("Program Manager", 110000.00, 1);
-INSERT INTO role (title,salary,department_id) VALUE ("Assistant Program Manager", 85000, 1);
-INSERT INTO role (title,salary,department_id) VALUE ("AMER Guru", 56000, 1);
-INSERT INTO role (title,salary,department_id) VALUE ("SEABEL Guru", 56000, 1);
-
-INSERT INTO department (name) VALUE ("GREF Customer Support");
+ use employee_db;
+INSERT INTO department
+    (name)
+VALUES
+    ('Sales'),
+    ('Engineering'),
+    ('Finance'),
+    ('Legal');
+INSERT INTO role
+    (title, salary, department_id)
+VALUES
+    ('Sales Lead', 100000, 1),
+    ('Salesperson', 80000, 1),
+    ('Lead Engineer', 150000, 2),
+    ('Software Engineer', 120000, 2),
+    ('Account Manager', 160000, 3),
+    ('Accountant', 125000, 3),
+    ('Legal Team Lead', 250000, 4),
+    ('Lawyer', 190000, 4);
+INSERT INTO employee
+    (first_name, last_name, role_id, manager_id)
+VALUES
+    ('Dylan', 'Bremner', 1, NULL),
+    ('Dennis', 'Johnson', 2, 1),
+    ('Steve', 'Roberts', 3, NULL),
+    ('Jessica', 'Mendez', 4, 3),
+    ('Carol', 'Dhruva', 5, NULL),
+    ('Malik', 'Turner', 6, 5),
+    ('Floyd', 'Mayweather', 7, NULL),
+    ('Doug', 'Smith', 8, 7);

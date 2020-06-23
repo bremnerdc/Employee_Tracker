@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
 
   // Your password
   password: process.env.MYSQL_PASSWORD,
-  database: "employees_db"
+  database: "employee_db"
 });
 
 connection.connect();
