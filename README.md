@@ -39,7 +39,7 @@ This is a CLI application.
 
 Dylan Bremner
 
-## Screenshots/Gif of Application In Use
+## Screenshots
 
 ![Screen Shot 2020-06-22 at 6 31 47 PM](https://user-images.githubusercontent.com/61300825/85350774-e2c79680-b4b6-11ea-82db-67b3296a13db.png)
 ![Screen Shot 2020-06-22 at 6 31 55 PM](https://user-images.githubusercontent.com/61300825/85350817-fe32a180-b4b6-11ea-9e9a-5b9f90a472ff.png)
@@ -48,6 +48,12 @@ Dylan Bremner
 ![Screen Shot 2020-06-22 at 6 32 13 PM](https://user-images.githubusercontent.com/61300825/85350951-5d90b180-b4b7-11ea-9003-cbaf34870cdc.png)
 ![Screen Shot 2020-06-22 at 6 32 25 PM](https://user-images.githubusercontent.com/61300825/85350987-7ac58000-b4b7-11ea-90bb-af871ee66eae.png)
 ![Screen Shot 2020-06-22 at 6 32 46 PM](https://user-images.githubusercontent.com/61300825/85351022-8ca72300-b4b7-11ea-9cdd-b22e5f6e3449.png)
+
+## GIF of Application in Use
+
+![employeetracker](https://user-images.githubusercontent.com/61300825/85352090-06d8a700-b4ba-11ea-93bc-51500e33fb9a.gif)
+
+
 
 
 
